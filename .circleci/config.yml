@@ -27,11 +27,11 @@ jobs:
           name: Debugging (print pwd and files)
           command: |
             pwd
-            ls -al
-            echo '-----------------------------------------------------------'
-            ls -al ../
             echo '-----------------------------------------------------------'
             ls -al ../.local
+            echo '-----------------------------------------------------------'
+            ls -al ../.local/bin/
+
 
       - persist_to_workspace:
           root: ../.local
