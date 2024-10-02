@@ -22,17 +22,17 @@ jobs:
           command: |
             echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
             source ~/.bashrc
-            pwd
-            ls -al
 
       - run:
           name: Debugging (print pwd and files)
           command: |
-            echo 'pwd'
-            echo 'ls -al'
+            pwd
+            ls -al
+            echo '-------------------------'
+            ls -al ../
 
       - persist_to_workspace:
-          root: ~/.local
+          root: ../.local
           paths:
             - bin/uv
 
@@ -42,7 +42,7 @@ jobs:
       - checkout
 
       - attach_workspace:
-          at: ~./local
+          at: ../.local
 
       - run:
           name: Set-up project dependencies
