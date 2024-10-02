@@ -16,16 +16,17 @@ jobs:
           command: |
             curl -LsSf https://astral.sh/uv/install.sh | sh
             source $HOME/.cargo/env
-          
+
+      - run:
           name: Set uv path as env variable and reload bash
           command: |
             echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
             source ~/.bashrc
-      
+
       - persist_to_workspace:
-        root: ~/.local
-        paths:
-          - bin/uv
+          root: ~/.local
+          paths:
+            - bin/uv
 
   test:
     executor: my-docker-executor
@@ -38,10 +39,12 @@ jobs:
       - run:
           name: Set-up project dependencies
           command: uv sync
-            
+
+      - run:
           name: Format python files with ruff
           command: uv run ruff check . --fix
-          
+
+      - run:
           name: Run test files
           command: uv run pytest
 
