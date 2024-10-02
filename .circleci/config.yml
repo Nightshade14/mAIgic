@@ -22,8 +22,8 @@ jobs:
           command: |
             echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
             source ~/.bashrc
-            echo 'pwd'
-            echo 'ls -al'
+            pwd
+            ls -al
 
       - run:
           name: Debugging (print pwd and files)
