@@ -36,7 +36,7 @@ jobs:
       - persist_to_workspace:
           root: ../.local
           paths:
-            - bin/uv
+            - bin/python
 
   test:
     executor: my-docker-executor
