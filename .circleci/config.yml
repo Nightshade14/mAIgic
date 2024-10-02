@@ -22,6 +22,14 @@ jobs:
           command: |
             echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
             source ~/.bashrc
+            echo 'pwd'
+            echo 'ls -al'
+
+      - run:
+          name: Debugging (print pwd and files)
+          command: |
+            echo 'pwd'
+            echo 'ls -al'
 
       - persist_to_workspace:
           root: ~/.local
