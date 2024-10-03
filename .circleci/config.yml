@@ -18,25 +18,25 @@ jobs:
             source $HOME/.cargo/env
 
       - run:
-          name: Set uv path as env variable and reload bash
-          command: |
-            echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
-            source ~/.bashrc
+          name: Reload bash
+          command: source ~/.bashrc
 
       - run:
           name: Debugging (print pwd and files)
           command: |
             pwd
             echo '-----------------------------------------------------------'
-            ls -al ../.local
+            ls -al ../
             echo '-----------------------------------------------------------'
-            ls -al ../.local/bin/
+            ls -al ../.cargo
+            echo '-----------------------------------------------------------'
+            ls -al ../.cargo/bin/
 
 
       - persist_to_workspace:
-          root: ../.local
+          root: ../.cargo
           paths:
-            - bin/python
+            - bin/uv
 
   test:
     executor: my-docker-executor
@@ -44,7 +44,7 @@ jobs:
       - checkout
 
       - attach_workspace:
-          at: ../.local
+          at: ../.cargo
 
       - run:
           name: Set-up project dependencies
