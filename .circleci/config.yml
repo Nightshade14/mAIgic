@@ -15,11 +15,7 @@ jobs:
           name: Get uv via curl and install it
           command: |
             curl -LsSf https://astral.sh/uv/install.sh | sh
-            source $HOME/.cargo/env
-
-      - run:
-          name: Reload bash
-          command: source ~/.bashrc
+            echo 'export PATH=$HOME/.cargo/bin:$PATH' >> $BASH_ENV
 
       - persist_to_workspace:
           root: /home/circleci/
@@ -35,8 +31,8 @@ jobs:
           at: /home/circleci/
 
       - run:
-          name: Set-up rust dependencies path
-          command: source $HOME/.cargo/env
+          name: Set-up dependencies path
+          command: echo 'export PATH=$HOME/.cargo/bin:$PATH' >> $BASH_ENV
 
       - run:
           name: Debugging (print pwd and files)
