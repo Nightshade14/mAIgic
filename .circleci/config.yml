@@ -34,7 +34,10 @@ jobs:
       - attach_workspace:
           at: /home/circleci/
 
-      
+      - run:
+          name: Set-up rust dependencies path
+          command: source $HOME/.cargo/env
+
       - run:
           name: Debugging (print pwd and files)
           command: |
