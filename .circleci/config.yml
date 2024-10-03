@@ -21,18 +21,6 @@ jobs:
           name: Reload bash
           command: source ~/.bashrc
 
-      - run:
-          name: Debugging (print pwd and files)
-          command: |
-            pwd
-            echo '-----------------------------------------------------------'
-            ls -al ../
-            echo '-----------------------------------------------------------'
-            ls -al ../.cargo
-            echo '-----------------------------------------------------------'
-            ls -al ../.cargo/bin/
-
-
       - persist_to_workspace:
           root: /home/circleci/
           paths:
@@ -45,6 +33,18 @@ jobs:
 
       - attach_workspace:
           at: /home/circleci/
+
+      
+      - run:
+          name: Debugging (print pwd and files)
+          command: |
+            pwd
+            echo '-----------------------------------------------------------'
+            ls -al ../
+            echo '-----------------------------------------------------------'
+            ls -al ../.cargo
+            echo '-----------------------------------------------------------'
+            ls -al ../.cargo/bin/
 
       - run:
           name: Set-up project dependencies
