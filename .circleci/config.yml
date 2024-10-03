@@ -34,9 +34,9 @@ jobs:
 
 
       - persist_to_workspace:
-          root: ../.cargo
+          root: ~/
           paths:
-            - /
+            - home/circleci/.cargo
 
   test:
     executor: my-docker-executor
@@ -44,7 +44,7 @@ jobs:
       - checkout
 
       - attach_workspace:
-          at: ../.cargo
+          at: ~/
 
       - run:
           name: Set-up project dependencies
