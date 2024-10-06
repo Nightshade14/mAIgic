@@ -88,7 +88,7 @@ def create_card(list_id: str, name: str, desc: str) -> None:
 if __name__ == "__main__":
     # go to your target workspace and board, you will see a short id in your url
     # example: https://trello.com/b/{short_board_id}/{board_name}
-    short_board_id = "fwuidblk"
+    short_board_id = "your_short_board_id"
     full_board_id = get_full_board_info(short_board_id)
     # to simply test, I just chose the first list to add a new card
     if full_board_id:
