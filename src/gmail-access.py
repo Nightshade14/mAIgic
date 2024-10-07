@@ -1,7 +1,6 @@
 """Module for accessing Gmail using the simplegmail library."""
 
 from datetime import datetime
-from typing import list
 
 from simplegmail import Gmail
 
@@ -86,3 +85,34 @@ class GmailAccessModule:
             print(f"Date: {message.date}")
             print(f"Preview: {message.snippet}")
             print("---")
+
+
+def main() -> None:
+    """Test the GmailAccessModule by fetching and printing starred emails.
+
+    This function creates an instance of GmailAccessModule, authenticates
+    the user, and then retrieves and displays the starred messages from
+    the user's Gmail account.
+
+    Note:
+        This function requires proper Gmail API credentials and
+        user authentication to function correctly.
+
+    Raises:
+        ValueError: If authentication fails or if there's an issue
+            retrieving the starred messages.
+
+    """
+    # Create an instance of GmailAccessModule
+    gmail_module = GmailAccessModule()
+
+    # Authenticate
+    gmail_module.authenticate()
+
+    # Get and print starred messages
+    print("Fetching starred messages:")
+    gmail_module.get_starred_messages()
+
+
+if __name__ == "__main__":
+    main()
