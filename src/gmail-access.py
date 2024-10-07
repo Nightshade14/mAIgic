@@ -1,31 +1,19 @@
-# from simplegmail import Gmail
-
-# gmail = Gmail()
-
-# messages = gmail.get_starred_messages()
-
-# for message in messages:
-#     print("To: " + message.recipient)
-#     print("From: " + message.sender)
-#     print("Subject: " + message.subject)
-#     print("Date: " + message.date)
-#     print("Preview: " + message.snippet)
-
-#     print("Message Body: " + message.plain)
-
 """Module for accessing Gmail using the simplegmail library."""
 
-from typing import list, Optional
 from datetime import datetime
+from typing import list
+
 from simplegmail import Gmail
 
 
 class GmailAccessModule:
+
     """A class to handle Gmail access operations."""
 
     def __init__(self) -> None:
         """Initialize the GmailAccessModule."""
-        self.gmail: Optional[Gmail] = None
+        self.gmail: Gmail | None = None
+        self.AuthError = "Not authenticated. Call authenticate() first."
 
     def authenticate(self) -> None:
         """Authenticate the user and set up the Gmail connection."""
@@ -34,7 +22,7 @@ class GmailAccessModule:
     def get_starred_messages(self) -> None:
         """Get and print starred messages."""
         if not self.gmail:
-            raise ValueError("Not authenticated. Call authenticate() first.")
+            raise ValueError(self.AuthError)
 
         messages = self.gmail.get_starred_messages()
         self._print_messages(messages)
@@ -44,24 +32,26 @@ class GmailAccessModule:
 
         Args:
             count (int): Number of emails to retrieve. Defaults to 10.
+
         """
         if not self.gmail:
-            raise ValueError("Not authenticated. Call authenticate() first.")
+            raise ValueError(self.AuthError)
 
         messages = self.gmail.get_messages(max_results=count)
         self._print_messages(messages)
 
     def check_emails_after_date(
-        self, start_date: datetime, max_results: Optional[int] = None
+        self, start_date: datetime, max_results: int | None = None,
     ) -> None:
         """Check emails after a specific date.
 
         Args:
             start_date (datetime): The start date for email retrieval.
             max_results (Optional[int]): Maximum number of results to retrieve.
+
         """
         if not self.gmail:
-            raise ValueError("Not authenticated. Call authenticate() first.")
+            raise ValueError(self.AuthError)
 
         query = f"after:{start_date.strftime('%Y/%m/%d')}"
         messages = self.gmail.get_messages(query=query, max_results=max_results)
@@ -72,9 +62,10 @@ class GmailAccessModule:
 
         Args:
             words (list[str]): list of words to filter emails by.
+
         """
         if not self.gmail:
-            raise ValueError("Not authenticated. Call authenticate() first.")
+            raise ValueError(self.AuthError)
 
         query = " OR ".join(words)
         messages = self.gmail.get_messages(query=query)
@@ -86,6 +77,7 @@ class GmailAccessModule:
 
         Args:
             messages (list): list of message objects to print.
+
         """
         for message in messages:
             print(f"To: {message.recipient}")
