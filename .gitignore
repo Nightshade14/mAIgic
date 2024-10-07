@@ -1,2 +1,4 @@
 **/**cache**/**
 *.egg-info/
+src/gmail_token.json
+src/client_secret.json
