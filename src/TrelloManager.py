@@ -1,9 +1,9 @@
 """TrelloManager module interacts with the Trello API to create cards."""
 import logging
 import os
+
 import requests
 from dotenv import load_dotenv
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -11,7 +11,27 @@ logger = logging.getLogger(__name__)
 HTTP_OK = 200
 
 class TrelloManager:
-    def __init__(self):
+
+    """A class to interact with the Trello API.
+
+    This class provides methods to retrieve and manipulate data on Trello boards,
+    such as creating lists, retrieving board and list details, and creating cards.
+
+    Attributes:
+        api_key (str): The API key for authenticating with Trello.
+        token (str): The OAuth token for accessing Trello API.
+        BASE_URL (str): The base URL for Trello API requests.
+
+    """
+
+    def __init__(self) -> None:
+        """Initialize TrelloManager with API credentials.
+
+        This method loads the API key and OAuth token from environment variables using
+        the `dotenv` package. These credentials are necessary for interacting with the
+        Trello API.
+
+        """
         # Retrieve API key and token from environment variables
         load_dotenv()
         self.api_key = os.getenv("TRELLO_API_KEY")
@@ -86,14 +106,14 @@ class TrelloManager:
         if response.status_code == HTTP_OK:
             logger.info("Card successfully created!")
 
-    def get_list_name(self, list_id):
-        """Get the list name of a specific list id in the specific board
+    def get_list_name(self, list_id: str) -> str:
+        """Get the list name of a specific list id in the specific board.
 
         Args:
-            list_id (str): the id of the specific list
+            list_id (str): the id of the specific list.
 
         Returns:
-            str: the name of the specific list
+            str: the name of the specific list.
 
         """
         url = f"{self.BASE_URL}/lists/{list_id}"
@@ -102,12 +122,14 @@ class TrelloManager:
             "token": self.token,
         }
         response = requests.get(url, params=query, timeout=10)
+
         if response.status_code == HTTP_OK:
             list_info = response.json()
-            return list_info.get("name")
+            return list_info.get("name", "No name found")
+
         return ""
 
-    def create_a_list(self, list_name, id_board):
+    def create_a_list(self, list_name: str, id_board: str) -> str:
         """Create a new list on the specified Trello board.
 
         Args:
@@ -118,7 +140,6 @@ class TrelloManager:
             str: The ID of the created list, or an empty string if creation failed.
 
         """
-
         url = f"{self.BASE_URL}/lists"
         query = {
             "idBoard": id_board,
