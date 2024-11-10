@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Set-up project dependencies
           command: uv sync
-      
+
       - run:
           name: Create test results directory
           command: mkdir -p test-results
@@ -52,7 +52,7 @@ jobs:
 
       - run:
           name: Run unit tests with coverage
-          command: uv run pytest tests/ --cov=maigic --cov-report=xml:test-results/coverage.xml --cov-report=term-missing
+          command: uv run pytest tests/ --junitxml=coverage.xml
 
       - store_test_results:
           path: test-results
