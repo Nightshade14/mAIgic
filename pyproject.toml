@@ -6,9 +6,10 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "mypy>=1.13.0",
-    "pytest-cov>=6.0.0",
     "pytest>=8.3.3",
+    "pytest-cov>=6.0.0",
     "ruff>=0.7.3",
+    "maigic",
 ]
 
 [build-system]
@@ -18,4 +19,3 @@ build-backend = "hatchling.build"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = ["S101", "D203", "D213", "COM812", "ISC001"]
->>>>>>> origin/Nightshade14/main
