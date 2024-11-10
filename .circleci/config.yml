@@ -19,7 +19,7 @@ jobs:
       - persist_to_workspace:
           root: /home/circleci/
           paths:
-            - .cargo
+            - .local
 
   test:
     executor: my-docker-executor
@@ -31,7 +31,7 @@ jobs:
 
       - run:
           name: Set-up dependencies path
-          command: echo 'export PATH=$HOME/.cargo/bin:$PATH' >> $BASH_ENV
+          command: echo 'export PATH=$HOME/.local/bin:$PATH' >> $BASH_ENV
 
       - run:
           name: Set-up project dependencies
