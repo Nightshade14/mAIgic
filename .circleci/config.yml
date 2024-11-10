@@ -52,7 +52,7 @@ jobs:
 
       - run:
           name: Run unit tests with coverage
-          command: uv run pytest tests/ --junitxml=coverage.xml
+          command: uv run pytest tests/ --junitxml=test-results/coverage.xml
 
       - store_test_results:
           path: test-results
