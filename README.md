@@ -56,4 +56,3 @@ Note: Request to keep all `communication` in the Google Chats Project Group.
 # License
 
 mAIgic has a MIT-style license, as found in the [LICENSE](LICENSE) file.
->>>>>>> origin/Nightshade14/main
