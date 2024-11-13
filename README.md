@@ -15,10 +15,11 @@ The project aims to leverage AI to track and remind for follow up messages for s
 # Instructions
 
 ## Setup
+Note: The project structure is designed as a library, ready to be build and published to PyPi. It was achieved via `uv` by running the command `uv init --lib` and then `uv venv --python 3.12`. This process does not need to be performed as the project ,now, exists.
 
 - Install `uv` on your system with command with `curl -LsSf https://astral.sh/uv/install.sh | sh`.
 - `cd` into the cloned repository and execute `uv sync` (This will install all the dependencies).
-- Activate the environment `venv` by executing `source ./.venv/bin/activate`.
+- Activate the environment `venv` by executing `source ./.venv/bin/activate`. </br>
 
 ## Processes
 
